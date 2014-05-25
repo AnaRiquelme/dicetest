@@ -37,22 +37,32 @@ public class ControlJson extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        Integer num1;
+        Integer num2;
         if( request.getParameter("num1")== null){
+              if( request.getParameter("num2")== null){
             Gson gson = new Gson();
             Map<String, String> data = new HashMap<>();
             data.put("status", "401");
             data.put("message", "error de autenticación");
             String resultado = gson.toJson(data);
             request.setAttribute("contenido", resultado);
-        } else {
-            String num1 = request.getParameter("num1");
-            String num2 = request.getParameter("num2");
-            
+            getServletContext().getRequestDispatcher("/jsp/messageAjax.jsp").forward(request, response);
+        }
+        
+        }else {
+             num1 = Integer.parseInt(request.getParameter("num1"));
+             num2 = Integer.parseInt(request.getParameter("num2"));
+             Integer num = Dado.aleatorio(num1, num2);
+             String data = new Gson().toJson(num);
+             data = "{\"list\":" + data + "}";
+            request.setAttribute("contenido", data);
+            getServletContext().getRequestDispatcher("/jsp/messageAjax.jsp").forward(request, response);
         }
         try {
-           // int num = Dado.aleatorio(num1, num2);
-            // String num = new Gson().toJson(num);
-            //request.setAtribute("contenido", num);
+          
+            
+           
         } finally {
             out.close();
         }
