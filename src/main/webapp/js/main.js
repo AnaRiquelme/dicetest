@@ -1,6 +1,3 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+/*Crear función get para contactar con servidor*/
 
 
