@@ -1,6 +1,6 @@
 function ajaxCallSync(url, type, data) {
     return $.ajax({
-        type: type,
+       type: type,
         url: url,
         data: data,
         async: false,
